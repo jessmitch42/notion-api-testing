@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Client } from "@notionhq/client";
 import { Card } from "@/components/Card";
 import { Nav } from "@/components/Nav";
+import { getDatabase } from "@/lib/notion";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,8 +26,8 @@ export default function Home({ database }) {
           {database.map((d, i) => (
             <ul className="cards" key={i}>
               <li>
-                <Link href={`/list/${d.id}`}>
-                  <Card {...d} name={d.properties.Name.title[0].plain_text} />
+                <Link href={`/page/${d.id}`}>
+                  <Card {...d} />
                 </Link>
               </li>
             </ul>
@@ -38,14 +39,11 @@ export default function Home({ database }) {
 }
 
 export async function getStaticProps() {
-  const notion = new Client({ auth: process.env.NOTION_API_KEY });
-  const response = await notion.databases.query({
-    database_id: process.env.NOTION_DATABASE_ID,
-  });
+  const database = await getDatabase();
 
   return {
     props: {
-      database: response.results,
+      database,
     },
     revalidate: 1,
   };

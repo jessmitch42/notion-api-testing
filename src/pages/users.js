@@ -2,6 +2,7 @@ import Link from "next/link";
 import styles from "@/styles/Home.module.css";
 import { Client } from "@notionhq/client";
 import { Card } from "@/components/Card";
+import { getUsers } from "@/lib/notion";
 
 export default function Users({ users }) {
   return (
@@ -20,12 +21,11 @@ export default function Users({ users }) {
 }
 
 export async function getStaticProps() {
-  const notion = new Client({ auth: process.env.NOTION_API_KEY });
-  const response = await notion.users.list();
-  console.log(response);
+  const users = await getUsers();
+
   return {
     props: {
-      users: response.results,
+      users,
     },
     revalidate: 1,
   };
