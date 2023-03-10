@@ -77,6 +77,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 html,
@@ -88,6 +89,28 @@ body {
 body {
   color: rgb(var(--foreground-rgb));
 
+}
+
+.nav {
+  display: flex;
+  align-items: first baseline;
+  width: 100%;
+}
+.nav li {
+  margin: 4px 4px 24px 0;
+  padding: 12px;
+  background-color: pink
+}
+
+li {
+  list-style-type: none;
+}
+
+.cards {
+  display: flex;
+}
+.card {
+  margin: 16px 0;
 }
 
 a {

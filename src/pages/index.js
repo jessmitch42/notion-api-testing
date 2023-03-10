@@ -4,6 +4,8 @@ import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import Link from "next/link";
 import { Client } from "@notionhq/client";
+import { Card } from "@/components/Card";
+import { Nav } from "@/components/Nav";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,27 +19,14 @@ export default function Home({ database }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <ul>
-          <li>
-            <Link href="/users">Users</Link>
-          </li>
-          <li>
-            <Link href="/blocks">Blocks</Link>
-          </li>
-        </ul>
+        <Nav />
         <section>
           <h1>Rest API Test (Page)</h1>
           {database.map((d, i) => (
-            <ul key={i}>
+            <ul className="cards" key={i}>
               <li>
                 <Link href={`/list/${d.id}`}>
-                  <b>Name:</b> {d.properties.Name.title[0].plain_text}
-                  <br />
-                  <b>ID:</b>
-                  {d.id}
-                  <br />
-                  <b>URL:</b>
-                  {d.url}
+                  <Card {...d} name={d.properties.Name.title[0].plain_text} />
                 </Link>
               </li>
             </ul>
