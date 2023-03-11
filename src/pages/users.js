@@ -3,19 +3,20 @@ import styles from "@/styles/Home.module.css";
 import { Client } from "@notionhq/client";
 import { Card } from "@/components/Card";
 import { getUsers } from "@/lib/notion";
+import { Nav } from "@/components/Nav";
 
 export default function Users({ users }) {
   return (
     <main className={styles.main}>
-      <div>
-        <Link href="/">Back</Link>
+      <Nav items={["back"]} />
+      <section>
         <h1>Users</h1>
         <ul>
           {users.map((u, i) => (
             <Card key={i} {...u} />
           ))}
         </ul>
-      </div>
+      </section>
     </main>
   );
 }

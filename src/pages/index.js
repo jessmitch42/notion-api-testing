@@ -11,6 +11,7 @@ import { getDatabase } from "@/lib/notion";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home({ database }) {
+  const navItems = ["users", "blocks"];
   return (
     <>
       <Head>
@@ -20,7 +21,8 @@ export default function Home({ database }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <Nav />
+        <Nav items={navItems} />
+        <hr />
         <section>
           <h1>Rest API Test (Page)</h1>
           {database.map((d, i) => (

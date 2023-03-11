@@ -90,6 +90,19 @@ body {
   color: rgb(var(--foreground-rgb));
 
 }
+section {
+  width: 100%;
+  margin-top: 16px;
+}
+
+h1 {
+  color: navy;
+}
+
+hr {
+  border: solid 3px navy;
+  width: 100%;
+}
 
 .nav {
   display: flex;

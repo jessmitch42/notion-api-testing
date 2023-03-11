@@ -1,12 +1,14 @@
 import Link from "next/link";
 
-export const Nav = () => (
+export const Nav = ({ items }) => (
   <ul className="nav">
-    <li>
-      <Link href="/users">Users</Link>
-    </li>
-    <li>
-      <Link href="/blocks">Blocks</Link>
-    </li>
+    {items.map((item, i) => {
+      const link = item === "back" ? "" : item;
+      return (
+        <li key={i}>
+          <Link href={`/${link}`}>{item}</Link>
+        </li>
+      );
+    })}
   </ul>
 );
